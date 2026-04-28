@@ -1,0 +1,90 @@
+/* Transições personalizadas para o modal */
+.modal-overlay {
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+}
+.modal-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.modal-overlay.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.modal-content {
+  transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.modal-overlay.hidden .modal-content {
+  transform: translateY(100%);
+}
+.modal-overlay.visible .modal-content {
+  transform: translateY(0);
+}
+@media (min-width: 768px) {
+  .modal-overlay.hidden .modal-content {
+    transform: translateY(30px) scale(0.96);
+  }
+  .modal-overlay.visible .modal-content {
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Scroll suave para as pills de categoria */
+.categories-scroll {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.categories-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Animação sutil de entrada dos cards */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.product-card {
+  animation: fadeInUp 0.5s ease forwards;
+}
+.product-card:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.product-card:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.product-card:nth-child(3) {
+  animation-delay: 0.15s;
+}
+.product-card:nth-child(4) {
+  animation-delay: 0.2s;
+}
+.product-card:nth-child(5) {
+  animation-delay: 0.25s;
+}
+.product-card:nth-child(6) {
+  animation-delay: 0.3s;
+}
+
+/* Badge de desconto pulsante */
+@keyframes subtlePulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.04);
+  }
+}
+.badge-pulse {
+  animation: subtlePulse 2.5s ease-in-out infinite;
+}

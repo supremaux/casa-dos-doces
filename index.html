@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Casa dos Doces — Vitrine Digital</title>
+
+    <!-- Fonte Inter via Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "system-ui", "sans-serif"],
+            },
+            colors: {
+              brand: {
+                50: "#fef2f2",
+                100: "#ffe1e1",
+                200: "#fec8c8",
+                300: "#fca5a5",
+                400: "#f87171",
+                500: "#ef4444",
+                600: "#dc2626",
+                700: "#b91c1c",
+                800: "#991b1b",
+                900: "#7f1d1d",
+              },
+              warm: {
+                50: "#fffbeb",
+                100: "#fef3c7",
+                200: "#fde68a",
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Lucide Icons via CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Modulos  -->
+    <script type="module" src="./main.js" async></script>
+  </head>
+  <body class="bg-gray-50 font-sans text-gray-800 antialiased min-h-screen">
+    <!-- ==================== HEADER ==================== -->
+    <header
+      class="sticky top-0 z-40 bg-white shadow-sm border-b border-gray-100"
+    >
+      <div class="max-w-6xl mx-auto px-4 py-3">
+        <!-- Linha 1: Logo + Localização (mobile) / Tudo em linha (desktop) -->
+        <div
+          class="flex items-center justify-between gap-3 flex-wrap md:flex-nowrap"
+        >
+          <!-- Logo -->
+          <a
+            href="#"
+            class="flex items-center gap-2 flex-shrink-0"
+            aria-label="Casa dos Doces — Página Inicial"
+          >
+            <div
+              class="w-9 h-9 bg-brand-600 rounded-lg flex items-center justify-center"
+            >
+              <i data-lucide="candy" class="w-5 h-5 text-white"></i>
+            </div>
+            <div class="leading-tight">
+              <span class="font-bold text-lg text-gray-900 tracking-tight"
+                >Casa dos Doces</span
+              >
+              <span class="block text-[10px] text-brand-600 font-medium -mt-0.5"
+                >Atacado & Varejo</span
+              >
+            </div>
+          </a>
+
+          <!-- Barra de busca (oculta em mobile muito pequeno, visível a partir de sm) -->
+          <div
+            class="relative flex-1 min-w-0 max-w-md hidden sm:block order-3 md:order-2 w-full md:w-auto mt-2 md:mt-0"
+          >
+            <div class="relative">
+              <i
+                data-lucide="search"
+                class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none"
+              ></i>
+              <input
+                type="text"
+                id="searchInput"
+                placeholder="Buscar produtos..."
+                class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-gray-100 border border-transparent focus:border-brand-300 focus:bg-white focus:ring-2 focus:ring-brand-100 text-sm text-gray-700 placeholder-gray-400 transition-all duration-200 outline-none"
+                autocomplete="off"
+              />
+            </div>
+          </div>
+
+          <!-- Localização -->
+          <div
+            class="flex items-center gap-1.5 text-sm text-gray-600 flex-shrink-0 cursor-pointer hover:text-brand-600 transition-colors order-2 md:order-3"
+            title="Nossa localização"
+          >
+            <i data-lucide="map-pin" class="w-4 h-4 text-brand-500"></i>
+            <span class="font-medium hidden sm:inline">Campo Grande, MS</span>
+            <span class="font-medium sm:hidden text-xs">CG, MS</span>
+          </div>
+        </div>
+
+        <!-- Barra de busca mobile (visível apenas em telas muito pequenas) -->
+        <div class="mt-2 sm:hidden">
+          <div class="relative">
+            <i
+              data-lucide="search"
+              class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none"
+            ></i>
+            <input
+              type="text"
+              id="searchInputMobile"
+              placeholder="Buscar produtos..."
+              class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-gray-100 border border-transparent focus:border-brand-300 focus:bg-white focus:ring-2 focus:ring-brand-100 text-sm text-gray-700 placeholder-gray-400 transition-all duration-200 outline-none"
+              autocomplete="off"
+            />
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ==================== BANNER PROMOCIONAL SUTIL ==================== -->
+    <div class="bg-brand-600 text-white">
+      <div
+        class="max-w-6xl mx-auto px-4 py-2.5 flex items-center justify-center gap-2 text-sm font-medium"
+      >
+        <i data-lucide="truck" class="w-4 h-4"></i>
+        <span
+          >Frete grátis a partir de R$ 199 • Descontos exclusivos no
+          atacado</span
+        >
+      </div>
+    </div>
+
+    <!-- ==================== CATEGORIAS (PILLS HORIZONTAIS) ==================== -->
+    <div
+      class="bg-white border-b border-gray-100 sticky top-[72px] md:top-[76px] z-30 shadow-sm"
+    >
+      <div class="max-w-6xl mx-auto px-4 py-3">
+        <div
+          class="categories-scroll flex gap-2 overflow-x-auto pb-1"
+          id="categoriesContainer"
+        >
+          <button
+            class="category-pill flex-shrink-0 px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 bg-brand-600 text-white shadow-md shadow-brand-200"
+            data-category="all"
+            aria-pressed="true"
+          >
+            Todos
+          </button>
+          <button
+            class="category-pill flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-600 hover:bg-gray-200"
+            data-category="balas"
+            aria-pressed="false"
+          >
+            🍬 Balas
+          </button>
+          <button
+            class="category-pill flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-600 hover:bg-gray-200"
+            data-category="chocolates"
+            aria-pressed="false"
+          >
+            🍫 Chocolates
+          </button>
+          <button
+            class="category-pill flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-600 hover:bg-gray-200"
+            data-category="artigos-festa"
+            aria-pressed="false"
+          >
+            🎉 Artigos de Festa
+          </button>
+          <button
+            class="category-pill flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-600 hover:bg-gray-200"
+            data-category="confeitaria"
+            aria-pressed="false"
+          >
+            🧁 Confeitaria
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== GRID DE PRODUTOS ==================== -->
+    <main class="max-w-6xl mx-auto px-4 py-6">
+      <!-- Indicador de resultados -->
+      <div class="flex items-center justify-between mb-5">
+        <p class="text-sm text-gray-500" id="resultsCount">
+          <span id="resultsNumber">6</span> produtos encontrados
+        </p>
+        <button
+          id="clearFiltersBtn"
+          class="text-xs text-brand-600 font-medium hover:underline hidden transition-all"
+          onclick="clearAllFilters()"
+        >
+          Limpar filtros
+        </button>
+      </div>
+
+      <!-- Grid responsivo -->
+      <div
+        class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5"
+        id="productsGrid"
+      >
+        <!-- Os cards serão renderizados via JavaScript -->
+      </div>
+
+      <!-- Estado vazio -->
+      <div
+        id="emptyState"
+        class="hidden flex-col items-center justify-center py-16 text-center"
+      >
+        <i data-lucide="search-x" class="w-16 h-16 text-gray-300 mb-4"></i>
+        <p class="text-gray-500 text-lg font-medium">
+          Nenhum produto encontrado
+        </p>
+        <p class="text-gray-400 text-sm mt-1">
+          Tente ajustar sua busca ou categoria
+        </p>
+        <button
+          onclick="clearAllFilters()"
+          class="mt-4 px-5 py-2 bg-brand-600 text-white rounded-full text-sm font-medium hover:bg-brand-700 transition-colors"
+        >
+          Ver todos os produtos
+        </button>
+      </div>
+    </main>
+
+    <!-- ==================== MODAL DE DETALHES ==================== -->
+    <div
+      id="productModal"
+      class="modal-overlay hidden fixed inset-0 z-50 flex items-end md:items-center justify-center"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitle"
+    >
+      <!-- Overlay escuro -->
+      <div
+        class="absolute inset-0 bg-black/50 backdrop-blur-sm"
+        id="modalBackdrop"
+      ></div>
+
+      <!-- Conteúdo do modal -->
+      <div
+        class="modal-content relative w-full md:max-w-lg max-h-[90vh] md:max-h-[85vh] bg-white rounded-t-2xl md:rounded-2xl shadow-2xl overflow-y-auto z-10"
+      >
+        <!-- Botão fechar -->
+        <button
+          id="closeModalBtn"
+          class="absolute top-3 right-3 z-20 w-9 h-9 rounded-full bg-white/90 backdrop-blur-sm shadow-md flex items-center justify-center hover:bg-gray-100 transition-colors"
+          aria-label="Fechar detalhes"
+        >
+          <i data-lucide="x" class="w-5 h-5 text-gray-600"></i>
+        </button>
+
+        <!-- Imagem do produto -->
+        <div
+          class="relative w-full aspect-[4/3] bg-gray-100 overflow-hidden rounded-t-2xl md:rounded-t-2xl"
+        >
+          <img
+            id="modalImage"
+            src=""
+            alt=""
+            class="w-full h-full object-cover"
+            loading="eager"
+          />
+          <!-- Badge de atacado sobre a imagem -->
+          <div class="absolute bottom-3 left-3 badge-pulse">
+            <span
+              class="inline-block bg-green-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg"
+            >
+              💰 Atacado disponível
+            </span>
+          </div>
+        </div>
+
+        <!-- Detalhes -->
+        <div class="p-5 md:p-6">
+          <!-- Nome do produto -->
+          <h2
+            id="modalTitle"
+            class="text-xl md:text-2xl font-bold text-gray-900 leading-tight mb-1"
+          ></h2>
+          <p
+            class="text-xs text-brand-600 font-medium mb-4"
+            id="modalCategory"
+          ></p>
+
+          <!-- Descrição -->
+          <p
+            id="modalDescription"
+            class="text-gray-600 text-sm leading-relaxed mb-5"
+          ></p>
+
+          <!-- Preços -->
+          <div class="bg-gray-50 rounded-xl p-4 mb-5 border border-gray-100">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-sm text-gray-500 font-medium"
+                >Preço Varejo</span
+              >
+              <span
+                id="modalPriceRetail"
+                class="text-lg font-bold text-gray-800"
+              ></span>
+            </div>
+            <div
+              class="flex items-center justify-between pt-3 border-t border-gray-200"
+            >
+              <div>
+                <span class="text-sm text-green-700 font-semibold"
+                  >Preço Atacado</span
+                >
+                <span
+                  id="modalWholesaleCondition"
+                  class="block text-xs text-gray-400 mt-0.5"
+                ></span>
+              </div>
+              <span
+                id="modalPriceWholesale"
+                class="text-xl font-extrabold text-green-600"
+              ></span>
+            </div>
+          </div>
+
+          <!-- Botão WhatsApp -->
+          <a
+            id="whatsappLink"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-center gap-2 w-full py-3.5 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-xl shadow-lg shadow-green-200 transition-all duration-200 hover:shadow-xl hover:shadow-green-300 active:scale-[0.98] text-base"
+          >
+            <i data-lucide="message-circle" class="w-5 h-5 fill-white"></i>
+            Pedir via WhatsApp
+          </a>
+          <p class="text-center text-xs text-gray-400 mt-3">
+            Resposta rápida • Atendimento personalizado
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== RODAPÉ SIMPLES ==================== -->
+    <footer class="bg-white border-t border-gray-100 mt-8">
+      <div
+        class="max-w-6xl mx-auto px-4 py-6 text-center text-sm text-gray-500"
+      >
+        <p class="font-semibold text-gray-700">Casa dos Doces</p>
+        <p class="mt-1">Atacado & Varejo • Campo Grande, MS</p>
+        <p class="mt-3 text-xs text-gray-400">
+          © 2026 Casa dos Doces — Vitrine Digital. Todos os direitos reservados.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
